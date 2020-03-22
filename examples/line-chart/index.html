@@ -1,0 +1,343 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<html>
+
+<head>
+  <title>Line Chart Example - CINCH CHARTS</title>
+  <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"/></script>
+  <script src="../../static/js/min/line.min.js"></script>
+  <link rel="stylesheet" href="../../static/css/min/cinch-charts.min.css" type="text/css">
+  <!-- Bootstrap Core CSS -->
+  <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Theme CSS -->
+  <link href="../../static/css/min/freelancer.min.css" rel="stylesheet">
+
+  <!-- Custom Fonts -->
+  <link href="../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <style>
+  .external-link a {
+    text-decoration: none;
+  }
+  .chart-container {
+    height: 65%;
+    width: 100%;
+  }
+  .code-container {
+    margin-top: 1%;
+    height: 60%;
+    overflow-y: scroll;
+  }
+  </style>
+</head>
+
+<body id="page-top" class="index">
+  <div id="skipnav"><a href="#maincontent">Skip to main content</a></div>
+
+  <!-- Navigation -->
+  <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+      <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header page-scroll">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+              </button>
+              <a class="navbar-brand" href="../../">CINCH CHARTS</a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                  <li class="hidden">
+                      <a href="../../"></a>
+                  </li>
+                  <li class="page-scroll">
+                      <a href="../../">Back</a>
+                  </li>
+                  <li class="page-scroll">
+                      <a href="../area-chart/">Prev</a>
+                  </li>
+                  <li class="page-scroll">
+                      <a href="../multi-line-chart/">Next</a>
+                  </li>
+              </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+  </nav>
+
+  <section id="graph">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+              <h2>Line chart</h2>
+              <hr class="star-primary">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-offset-1">
+            <h4 class="external-link">
+            <a href="https://jsfiddle.net/bharadhwaj_cn/0d7mLjx3/" target="_blank">
+              <span class="label label-default">Basic Example</span>
+            </a>
+            <a href="https://jsfiddle.net/bharadhwaj_cn/g89zc7dx/" target="_blank">
+              <span class="label label-primary">Full Option Example</span>
+            </a>
+            <a href="https://github.com/bharadhwajcn/cinch-charts/blob/master/docs/line-chart.md#line-chart" target="_blank">
+              <span class="label label-success">Documentation</span>
+            </a>
+            </h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-7 col-md-7">
+            <div class="chart-container" height="600"></div>
+          </div>
+          <div class="code-container col-lg-5 col-md-5">
+            <pre>
+var chart = new LineChart(element, data, {
+  line: {
+    color: '#B8D551',
+    width: 4,
+    icon: {
+      show: true,
+      url: 'https://bharadhwajcn.github.io/cinch-charts/static/images/green_circle.png',
+      toBase64: false,
+      class: 'point-icon',
+      width: 10
+    }
+  },
+  threshold: {
+    value: 50,
+    icon: {
+      url: 'https://bharadhwajcn.github.io/cinch-charts/static/images/orange_circle.png',
+      toBase64: false,
+    }
+  },
+  grids: {
+    vertical: {
+      show: true,
+      color: '#999',
+      opacity: .5,
+    },
+    horizontal: {
+      show: true,
+      color: '#999',
+      opacity: .5,
+      skipFirst: false,
+      skipLast: false,
+      values: [10, 30, 50, 70, 80]
+    }
+  },
+  transition: {
+    animate: true,
+    duration: 2000
+  },
+  margin: {
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0
+  },
+  goalLine: {
+    value: 50,
+    class: 'goalline',
+    icon: {
+      url: 'https://bharadhwajcn.github.io/cinch-charts/static/images/goal_arrow.png',
+      class: 'goal-icon',
+      height: 15,
+      width: 13,
+      left: 0
+    }
+  },
+  axis: {
+    xAxis: {
+      showAxisLine: true,
+      firstLabel: true,
+      orientation: 'bottom',
+      ticks: {
+        values: ['Jan', 'Mar', 'May', 'Aug', 'Oct', 'Dec'],
+        padding: 10,
+				formatter: function(value) {
+          return value + " '17";
+        }
+      }
+    },
+    yAxis: {
+      showAxisLine: true,
+      firstLabel: false,
+      orientation: 'left',
+      ticks: {
+        values: [{
+          value: 10,
+          label: '10 m unit'
+        }, {
+          value: 30,
+          label: '30 m unit'
+        }, {
+          value: 50,
+          label: '50 m unit'
+        }, {
+          value: 70,
+          label: '70 m unit'
+        }, {
+          value: 80,
+          label: '80 m unit'
+        }, ],
+        position : {
+          x : 0,
+          y : 10
+        },
+        font_size: '12px',
+      }
+    }
+  },
+  tooltip: {
+    show: true,
+    listener: 'click touchstart',
+    class: 'custom-tooltip',
+    formatter: function() {
+      return this.yValue + ' units in ' + this.xValue;
+    },
+  },
+  connectNull: true
+});
+        </pre>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <script>
+
+    var element = document.querySelector('.chart-container');
+
+    var data = [
+                  ['Jan', 10],
+                  ['Feb', 70],
+                  ['Mar', 30],
+                  ['Apr', 10],
+                  ['May', null],
+                  ['Jun', 45],
+                  ['Jul', 76],
+                  ['Aug', 40],
+                  ['Sep', 40],
+                  ['Oct', 60],
+                  ['Nov', 40],
+                  ['Dec', 80]
+              ];
+
+    var chart = new LineChart(element, data, {
+      line: {
+        color: '#B8D551',
+        width: 4,
+        icon: {
+          show: true,
+          url: 'https://bharadhwajcn.github.io/cinch-charts/static/images/green_circle.png',
+          toBase64: false,
+          class: 'point-icon',
+          width: 10
+        }
+      },
+      threshold: {
+        value: 50,
+        icon: {
+          url: 'https://bharadhwajcn.github.io/cinch-charts/static/images/orange_circle.png',
+          toBase64: false,
+        }
+      },
+      grids: {
+        vertical: {
+          show: true,
+          color: '#999',
+          opacity: .5,
+        },
+        horizontal: {
+          show: true,
+          color: '#999',
+          opacity: .5,
+          skipFirst: false,
+          skipLast: false,
+          values: [10, 30, 50, 70, 80]
+        }
+      },
+      transition: {
+        animate: true,
+        duration: 2000
+      },
+      margin: {
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0
+      },
+      goalLine: {
+        value: 50,
+        class: 'goalline',
+        icon: {
+          url: 'https://bharadhwajcn.github.io/cinch-charts/static/images/goal_arrow.png',
+          class: 'goal-icon',
+          height: 15,
+          width: 13,
+          left: 0
+        }
+      },
+      axis: {
+        xAxis: {
+          showAxisLine: true,
+          firstLabel: true,
+          orientation: 'bottom',
+          ticks: {
+            values: ['Jan', 'Mar', 'May', 'Aug', 'Oct', 'Dec'],
+            padding: 10,
+    				formatter: function(value) {
+              return value + " '17";
+            }
+          }
+        },
+        yAxis: {
+          showAxisLine: true,
+          firstLabel: false,
+          orientation: 'left',
+          ticks: {
+            values: [{
+              value: 10,
+              label: '10 m unit'
+            }, {
+              value: 30,
+              label: '30 m unit'
+            }, {
+              value: 50,
+              label: '50 m unit'
+            }, {
+              value: 70,
+              label: '70 m unit'
+            }, {
+              value: 80,
+              label: '80 m unit'
+            }, ],
+            position : {
+              x : 0,
+              y : 10
+            },
+            font_size: '12px',
+          }
+        }
+      },
+      tooltip: {
+        show: true,
+        listener: 'click touchstart',
+        class: 'custom-tooltip',
+        formatter: function() {
+          return this.yValue + ' units <br>in ' + this.xValue;
+        },
+      },
+      connectNull: true
+    });
+  </script>
+
+</body>
+</html>

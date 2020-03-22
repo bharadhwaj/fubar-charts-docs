@@ -1,0 +1,304 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<html>
+
+<head>
+  <title>Stacked Bar Chart Example - CINCH CHARTS</title>
+  <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"/></script>
+  <script src="../../static/js/min/stackedBar.min.js"></script>
+  <link rel="stylesheet" href="../../static/css/min/cinch-charts.min.css" type="text/css">
+  <!-- Bootstrap Core CSS -->
+  <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Theme CSS -->
+  <link href="../../static/css/min/freelancer.min.css" rel="stylesheet">
+
+  <!-- Custom Fonts -->
+  <link href="../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <style>
+  .external-link a {
+    text-decoration: none;
+  }
+  .chart-container {
+    height: 65%;
+    width: 100%;
+  }
+  .code-container {
+    margin-top: 1%;
+    height: 60%;
+    overflow-y: scroll;
+  }
+  </style>
+</head>
+
+<body id="page-top" class="index">
+  <div id="skipnav"><a href="#maincontent">Skip to main content</a></div>
+
+  <!-- Navigation -->
+  <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+      <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header page-scroll">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+              </button>
+              <a class="navbar-brand" href="../../">CINCH CHARTS</a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                  <li class="hidden">
+                      <a href="../../"></a>
+                  </li>
+                  <li class="page-scroll">
+                      <a href="../../">Back</a>
+                  </li>
+                  <li class="page-scroll">
+                      <a href="../bar-chart/">Prev</a>
+                  </li>
+                  <li class="page-scroll">
+                      <a href="../area-chart/">Next</a>
+                  </li>
+              </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+  </nav>
+
+  <section id="graph">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+              <h2>Stacked Bar chart</h2>
+              <hr class="star-primary">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-offset-1">
+            <h4 class="external-link">
+            <a href="https://jsfiddle.net/bharadhwaj_cn/cvnk19f8/" target="_blank">
+              <span class="label label-default">Basic Example</span>
+            </a>
+            <a href="https://jsfiddle.net/bharadhwaj_cn/qLmntobt/" target="_blank">
+              <span class="label label-primary">Full Option Example</span>
+            </a>
+            <a href="https://github.com/bharadhwajcn/cinch-charts/blob/master/docs/stacked-bar-chart.md#stacked-bar-chart" target="_blank">
+              <span class="label label-success">Documentation</span>
+            </a>
+            </h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-7 col-md-7">
+            <div class="chart-container" height="600"></div>
+          </div>
+          <div class="code-container col-lg-5 col-md-5">
+            <pre>
+var chart = new StackedBarChart(element, data, stack, {
+  bar : {
+    color :  ['#90ED7D', '#757575', '#00526C', '#6ED1F7', '#238FFF'],
+    width : 20,
+    curve : {
+      show : true,
+      bars : 'top'
+    },
+    opacity : 0.8,
+    padding : .01,
+  },
+  margin : {
+    left : 0,
+    right : 0,
+    top : 0,
+    bottom : 0
+  },
+  transition: {
+    animate: true,
+    delay : 100,
+    duration : 200
+  },
+  grids : {
+    vertical : {
+      show : true,
+      color : '#999',
+      opacity : .5,
+      values : [ '2010', '2012', '2014', '2016']
+    },
+    horizontal : {
+      show : true,
+      color : '#999',
+      opacity : .5,
+      skipFirst : false,
+      skipLast : false,
+      values : [0, 10, 30, 40, 50, 80]
+    }
+  },
+  goalLine : {
+    value : 60,
+    class : 'goalline',
+    icon: {
+      url: 'https://bharadhwajcn.github.io/cinch-charts/static/images/goal_arrow.png',
+      toBase64 : true,
+      class: 'goal-icon',
+      height : 20,
+      width : 20,
+      left: 0
+    }
+  },
+  axis : {
+    xAxis : {
+      showAxisLine : true,
+      firstLabel : true,
+      orientation: 'bottom',
+      ticks : {
+        values : [ '2010', '2012', '2014', '2016'],
+        padding : 10,
+      }
+    },
+    yAxis : {
+      showAxisLine : true,
+      firstLabel : true,
+      orientation: 'left',
+      ticks : {
+        values: [ { value : 10, label : '10 m unit' },
+                  { value : 30, label : '30 m unit' },
+                  { value : 40, label : '40 m unit' },
+                  { value : 50, label : '50 m unit' },
+                  { value : 80, label : '80 m unit' },
+                ],
+        font_size : '12px',
+        formatter : function(value) {
+          return String(value) + 'k units';
+        },
+      }
+    }
+  },
+  tooltip: {
+    show : true,
+    listener : 'click touchstart',
+    class : 'custom-tooltip',
+    formatter : function() {
+      return 'Total ' + this.yValue +
+             'First : ' + this.stackData.firstquarter + ' Second: ' + this.stackData.secondquarter +
+             'Third : ' + this.stackData.thirdquarter + ' Fourth: ' + this.stackData.fourthquarter;
+    }
+  }
+});
+        </pre>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <script>
+
+  var element = document.querySelector('.chart-container');
+
+  var data = [ { year : '2010', firstquarter : 20,  secondquarter : 25, thirdquarter : 18, fourthquarter : 22 },
+               { year : '2011', firstquarter : 24,  secondquarter : 22, thirdquarter : 22, fourthquarter : 21 },
+               { year : '2012', firstquarter : 21,  secondquarter : 26, thirdquarter : 19, fourthquarter : 23 },
+               { year : '2013', firstquarter : 19,  secondquarter : 21, thirdquarter : 21, fourthquarter : 19 },
+               { year : '2014', firstquarter : 22,  secondquarter : 19, thirdquarter : 17, fourthquarter : 21 },
+               { year : '2015', firstquarter : 23,  secondquarter : 25, thirdquarter : 22, fourthquarter : 24 },
+               { year : '2016', firstquarter : 21,  secondquarter : 22, thirdquarter : 25, fourthquarter : 23 } ];
+
+  var stack = ['firstquarter' , 'secondquarter', 'thirdquarter', 'fourthquarter'];
+
+  var chart = new StackedBarChart(element, data, stack, {
+    bar : {
+      color :  ['#90ED7D', '#757575', '#00526C', '#6ED1F7', '#238FFF'],
+
+      width : 20,
+      curve : {
+        show : true,
+        bars : 'top'
+      },
+      opacity : 0.8,
+      padding : .01,
+    },
+    margin : {
+      left : 0,
+      right : 0,
+      top : 0,
+      bottom : 0
+    },
+    transition: {
+      animate: true,
+      delay : 100,
+      duration : 200
+    },
+    grids : {
+      vertical : {
+        show : true,
+        color : '#999',
+        opacity : .5,
+        values : [ '2010', '2012', '2014', '2016']
+      },
+      horizontal : {
+        show : true,
+        color : '#999',
+        opacity : .5,
+        skipFirst : false,
+        skipLast : false,
+        values : [0, 10, 30, 40, 50, 80]
+      }
+    },
+    goalLine : {
+      value : 60,
+      class : 'goalline',
+      icon: {
+        url: 'https://bharadhwajcn.github.io/cinch-charts/static/images/goal_arrow.png',
+        toBase64 : true,
+        class: 'goal-icon',
+        height : 20,
+        width : 20,
+        left: 0
+      }
+    },
+    axis : {
+      xAxis : {
+        showAxisLine : true,
+        firstLabel : true,
+        orientation: 'bottom',
+        ticks : {
+          values : [ '2010', '2012', '2014', '2016'],
+          padding : 10,
+        }
+      },
+      yAxis : {
+        showAxisLine : true,
+        firstLabel : true,
+        orientation: 'left',
+        ticks : {
+          values: [ { value : 10, label : '10 m unit' },
+                    { value : 30, label : '30 m unit' },
+                    { value : 40, label : '40 m unit' },
+                    { value : 50, label : '50 m unit' },
+                    { value : 80, label : '80 m unit' },
+                  ],
+          font_size : '12px',
+          formatter : function(value) {
+            return String(value) + 'k units';
+          },
+        }
+      }
+    },
+    tooltip: {
+      show : true,
+      listener : 'click touchstart',
+      class : 'custom-tooltip',
+      formatter : function() {
+        return '<p> <b> Total </b> ' + this.yValue +
+               '<br> First : ' + this.stackData.firstquarter + ' Second: ' + this.stackData.secondquarter +
+               '<br> Third : ' + this.stackData.thirdquarter + ' Fourth: ' + this.stackData.fourthquarter + '</p>';
+      }
+    }
+  });
+
+  </script>
+
+</body>
+</html>
